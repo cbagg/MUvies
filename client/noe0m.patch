@@ -1,0 +1,58 @@
+diff --git a/src/input.c b/src/input.c
+index b9e3bbb..7b5d109 100644
+--- a/src/input.c
++++ b/src/input.c
+@@ -797,7 +797,7 @@ void echo_command(struct session *ses, char *line)
+
+ 	if (HAS_BIT(ses->flags, SES_FLAG_ECHOCOMMAND))
+ 	{
+-		sprintf(buffer, "%s%s\e[0m", ses->cmd_color, line);
++		sprintf(buffer, "%s%s\e[0;37;49m", ses->cmd_color, line); // Patched for Clessidra MUD.
+ 	}
+ 	else
+ 	{
+@@ -805,7 +805,7 @@ void echo_command(struct session *ses, char *line)
+ 		{
+ 			return;
+ 		}
+-		sprintf(buffer, "\e[0m");
++		sprintf(buffer, "\e[0;37;49m"); // Patched for Clessidra MUD.
+ 	}
+
+ //	if (ses->wrap == gtd->screen->cols)
+diff --git a/src/misc.c b/src/misc.c
+index a52129d..d6a9d16 100644
+--- a/src/misc.c
++++ b/src/misc.c
+@@ -183,11 +183,11 @@ DO_COMMAND(do_echo)
+
+ 	if (strip_vt102_strlen(ses, ses->more_output) != 0)
+ 	{
+-		output = str_dup_printf("\n\e[0m%s\e[0m", temp);
++		output = str_dup_printf("\n\e[0m%s", temp); // Patched for Clessidra MUD.
+ 	}
+ 	else
+ 	{
+-		output = str_dup_printf("\e[0m%s\e[0m", temp);
++		output = str_dup_printf("\e[0m%s", temp); // Patched for Clessidra MUD.
+ 	}
+
+ 	add_line_buffer(ses, output, lnf);
+diff --git a/src/show.c b/src/show.c
+index 6cbe63c..7122158 100644
+--- a/src/show.c
++++ b/src/show.c
+@@ -70,11 +70,11 @@ DO_COMMAND(do_showme)
+
+ 	if (strip_vt102_strlen(ses, ses->more_output) != 0)
+ 	{
+-		str_cpy_printf(&out, "\n%s%s%s", COLOR_TEXT, arg1, COLOR_TEXT);
++		str_cpy_printf(&out, "\n%s%s", COLOR_TEXT, arg1); // Patched for Clessidra MUD.
+ 	}
+ 	else
+ 	{
+-		str_cpy_printf(&out, "%s%s%s", COLOR_TEXT, arg1, COLOR_TEXT);
++		str_cpy_printf(&out, "%s%s", COLOR_TEXT, arg1); // Patched for Clessidra MUD.
+ 	}
+
+ 	add_line_buffer(ses, out, lnf);

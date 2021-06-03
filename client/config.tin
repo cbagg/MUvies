@@ -1,0 +1,124 @@
+#ALIAS {log}
+{
+     #if {"%0" == "on"}
+     {
+          #if {"$logging" != "on"}
+          {
+               #format {logfile} {/logs/%t.html} {%Y-%m-%d-%H-%M-%S};
+               #log append $logfile;
+               #variable logging on
+          };
+          #else
+          {
+               #showme You are already logging.
+          }
+     };
+     #elseif {"%0" == "off"}
+     {
+          #if {"$logging" == "on"}
+          {
+               #log off;
+               #variable logging off
+          };
+          #else
+          {
+               #showme You are not logging.
+          }
+     };
+     #else
+     {
+          #showme Turn logging on or off?
+     }
+}
+
+#FUNCTION {colscale}
+{
+     #switch {10 * %1 / %2}
+     {
+          #case {0}
+          {
+               #return <faa>
+          };
+          #case {1}
+          {
+               #return <fba>
+          };
+          #case {2}
+          {
+               #return <fca>
+          };
+          #case {3}
+          {
+               #return <fda>
+          };
+          #case {4}
+          {
+               #return <fea>
+          };
+          #case {5}
+          {
+               #return <ffa>
+          };
+          #case {6}
+          {
+               #return <efa>
+          };
+          #case {7}
+          {
+               #return <dfa>
+          };
+          #case {8}
+          {
+               #return <cfa>
+          };
+          #case {9}
+          {
+               #return <bfa>
+          };
+          #default
+          {
+               #return <afa>
+          }
+     }
+}
+
+
+#ACTION {^(%1/%2hp %3/%4mn %5/%6mv)(%7g %8:00h (%0)m %9xp)}
+{
+     #nop Type Prompt All to Fix Broken Prompts;
+     #variable hpcol @colscale{%1;%2};
+     #variable mncol @colscale{%3;%4};
+     #variable mvcol @colscale{%5;%6};
+
+     #format {p1} {<179>Hp: %s%+4s<238>/<138>%-4s} {$hpcol} {%1} {%2};
+     #format {p2} {<179>Mn: %s%+4s<238>/<138>%-4s} {$mncol} {%3} {%4};
+     #format {p3} {<179>Mv: %s%+4s<238>/<138>%-4s} {$mvcol} {%5} {%6};
+     #format {p4} {<179>Xp:<049>%+5s} {%9};
+     #format {p5} {<179>G:<138>%-5s} {%7};
+     #format {p6} {<179>Mount:<069>%-1s} {%0};
+     #format {p7} {<179>Time:<159>%+2s:00<099>  } {%8};
+     #format {prompt} {%s  %s  %s  %s  %s  %s  %s} {$p1} {$p2} {$p3} {$p4} {$p5} {$p6} {$p7}
+}
+{1}
+
+#PROMPT {^(%1/%2hp %3/%4mn %5/%6mv)(%7g %8:00h (%0)m %9xp} {$prompt} {} {}
+
+#config repeat_enter on
+#config log html
+
+#EVENT {SESSION CONNECTED}
+{
+     #split
+}
+
+#event {RECEIVED LINE}
+{
+   #format totalmicrosec %U;
+   #math microsec {($totalmicrosec % 1000000) / 100};
+   #format timestamp {%t.%%04d} {{%H:%M:%S} {$microsec}};
+   #line log {$logfile} {$totalmicrosec \};
+}
+
+#ses aelisus play.aelisus.com 1848
+
+

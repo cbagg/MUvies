@@ -1,0 +1,19 @@
+version: "3.9"
+
+volumes:
+  log_data:
+    external: true
+
+services:
+  client:
+    build: client/
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./log_data:/logs/
+  replay:
+    build: replay/
+    ports:
+      - "3001:3000"
+    volumes:
+      - ./log_data:/logs/

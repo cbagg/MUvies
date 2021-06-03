@@ -1,0 +1,116 @@
+<link rel="stylesheet" href="css/grid.css">
+<link rel="stylesheet" href="css/screen.css">
+<link rel="stylesheet" href="css/navtabs.css">
+
+<style>
+@media only screen and (min-width: 30em) {
+	.content { width: 66.66%; }
+	.sidebar { width: 33.33%; }
+}
+
+</style>
+
+
+
+<div class="col content"> 
+	<iframe id="frame" src="http://34.121.228.45:3000/" frameborder="0" scrolling="no"></iframe> 
+</div>
+
+<div class="col sidebar">
+	<div class="row">
+		<h2><img src="icon.png"></h2>
+		<h2><b>Elisus</b> Mud</h2>
+	</div>
+
+	<div class="row">
+
+
+
+
+<button class="accordion">What is <b>Elisus</b>?</button>
+<div class="panel">
+  <p>
+<b><b>Elisus</b></b> is a multi-user dungeon, or MUD.
+</p>
+<p>
+A MUD is a multi-player computer game that combines elements of role-playing games, hack and slash style computer games and social chat rooms. MUDs are text-driven, where players read descriptions of rooms, objects, events, other characters, and computer-controlled creatures or non-player characters (NPCs) in a virtual world.
+</p>
+<p>
+Players interact with each other and the world by typing commands that resemble a natural language. Modern game-like MMORPGs, such as World of Warcraft, and social virtual worlds such as Second Life can have their origins traced back to the original MUDs, and, in fact, the MMORPG RuneScape originally started out as a text-based MUD before graphics were added.
+</p>
+</div>
+
+<button class="accordion">What type of MUD is <b>Elisus</b>?</button>
+<div class="panel">
+  <p>
+<b>Elisus</b> is an RP Enforced, PvE & PvP Restricted Loot & PK Diku Mud! Wow, That's alot of acronyms! Let's break it down in the other questions!
+</p>
+</div>
+
+<button class="accordion">What does it mean that <b>Elisus</b> is RP Enforced?</button>
+<div class="panel">
+<p>
+What that means is that in <b>Elisus</b> Roleplay, or RP, is required, and not suggested. This means that when you are in the game, we do not allow any OOC (or Out of Character) conversations. If you are playing the game as an elf, or a giant, or a dark knight, we expect you to act like it. 
+</p>
+<p>
+You cannot discuss the most recent political topic, apple product release, or sporting event while in the game. There are many OOC channels, including the Mud's discord and forum, however, where you are free to break character. We believe that this differentiates us from many other MUDs because we are able to create a deep and realistic world. 
+</p>
+</div>
+
+<button class="accordion">Do you have PvE? Or what can I do without other players?</button>
+<div class="panel">
+<p>
+<b>Elisus</b> has many options for Player vs Environment, including story driven quests, dozens of highly detailed areas to explore, and thousands of intelligent NPCs (non-player characters) to battle and interract with. 
+</p>
+</div>
+
+<button class="accordion">What is looting? How does it work?</button>
+<div class="panel">
+<p>
+Players in <b>Elisus</b> may Loot, or take items from a corpse, and be Looted, by other players. This means you can kill other players to take armor you want from them, and they can kill you to take your armor. In fact, the absolute best armor may only be obtainable through looting, unless you can gain the item before the rest and hold onto it! 
+</p>
+<p>
+Despite our looting environment, we have strong base armor that allows any player to compete with or without looting from other players. 
+</p>
+</div>
+
+<button class="accordion">How does Player Killing work?</button>
+<div class="panel">
+<p>
+In <b>Elisus</b>, You Can Die. Not just other creatures, but to other players. However, while we aren't a full loot or unrestricted PK mud, we have a more real and engaging PK systems than many RPI muds, which focus heavily on story telling for combat. 
+</p>
+<p>
+By contract, we have a highly automated combat system that, much like many top AAA titles, will require practice and skill. Our combat system is guaranteed to leave you on the edge of your seat as you fight for that hard earned kill, or with a beating heart as you escape the clutches of death! 
+</p>
+<p>
+Restrictions, however, are in place. Players are only allowed to PK other people within a dynamic level range that is designed to keep fights fair. A level 50 player will not be able to make life difficult for your level 20 character. The intelligent system automatically determines competitiveness using carefully balanced experience penalties
+</p>
+</div>
+
+
+
+
+</div>
+</div>
+
+
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    /* Toggle between adding and removing the "active" class,
+    to highlight the button that controls the panel */
+    this.classList.toggle("active");
+
+    /* Toggle between hiding and showing the active panel */
+    var panel = this.nextElementSibling;
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "block";
+    }
+  });
+}
+</script>
